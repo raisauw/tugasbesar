@@ -100,7 +100,6 @@ public:
         return NULL;
     }
 
-    // Fungsi untuk mencari buku berdasarkan nama penulis
 void cariBerdasarkanNamaPenulis(string namaPenulisdicari) {
     Node* temp = head;
     bool found = false;
@@ -141,9 +140,6 @@ struct pinjam {
 
 pinjam* font, * back, * newNode, * cur, * del;
 
-/* Operasi Linked List */
-// Penambahnama antrian
-// Menghitung jumlah antrian
 int countAntrian() {
     int count = 0;
     cur = font;
@@ -153,7 +149,7 @@ int countAntrian() {
     }
     return count;
 }
-// Mengecek apakah anterian kosong
+
 bool isEmpty() {
     return font == NULL;
 }
@@ -178,7 +174,6 @@ void enqueue(string nama,string nim,string judul,string durasi) {
     }
 }
 
-// Penghapusnama nterian
 void dequeue(int posisi) {
     if (isEmpty()) {
         cout << "Antrian kosong" << endl;
@@ -214,7 +209,6 @@ void dequeue(int posisi) {
     
 }
 
-//Menampilkan anterian
 void display(int max) {
         for (int i = 1 ; i <= max; i++) {
             if (i <= countAntrian()) {
@@ -233,8 +227,6 @@ void display(int max) {
     }
 }
 
-// Menghapus semua elemen anterian
-
 int main(){
     Perpustakaan list;
     string nama_peminjam,judul_pinjam,judulBuku, namaPenulis,judullama,penulislama,ISBN,ISBNlama;
@@ -242,17 +234,19 @@ int main(){
     Node* hasil;
     int Max, pilih, jumlahBuku;
 
+    cout << "Selamat Datang Di Perpustakaan\n";
+
     while (true)
     {
-        cout << "Text pembukaan\n";
+        cout << "Silahkan Pilih Menu\n\n";
         cout << "1. Tambah Buku\n";
         cout << "2. Lihat semua Buku\n";
         cout << "3. Ubah Buku\n";
         cout << "4. Hapus Buku\n"; 
         cout << "5. Pinjam Buku\n";
         cout << "6. Cari Buku\n";
-        cout << "7. Keluar;";
-        cout << "Text Pilih Menu: "; cin >> pilih;
+        cout << "7. Keluar\n";
+        cout << "Pilih Menu: "; cin >> pilih;
         system("clear");
         switch (pilih)
         {
@@ -418,14 +412,16 @@ int main(){
             
 
             else{
-                cout<<"input tidak valid";
+                cout<< "Input Tidak Valid!";
             }
             break;}
 
-        case 7: exit (0);
+        case 7:
+            cout << "Terima Kasih Telah Mengunjungi Perpustakaan\n";
+            exit (0);
 
         default:
-            cout << "text salah input\n\n";
+            cout << "Input Tidak Valid!\n\n";
             break;
         
 
