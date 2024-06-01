@@ -10,50 +10,65 @@ public:
     string judulBuku;
     string ISBN;
     string namaPenulis;
-    Node* next;
-    Node* prev;
+
+    Node *next;
+    Node *prev;
 };
 
 class Perpustakaan
 {
 public:
-    Node* head;
-    Node* tail;
+    Node *head;
+    Node *tail;
 
-    Perpustakaan(){
+    Perpustakaan()
+    {
         head = NULL;
         tail = NULL;
     }
 
-    void push(string judulBuku, string ISBN, string namaPenulis){
-        Node* newNode = new Node;
+    void push(string judulBuku, string ISBN, string namaPenulis)
+    {
+        Node *newNode = new Node;
         newNode->judulBuku = judulBuku;
         newNode->ISBN = ISBN;
         newNode->namaPenulis = namaPenulis;
         newNode->next = head;
         newNode->prev = NULL;
+
         if (head != NULL)
         {
             head->prev = newNode;
-        } else {
+        }
+        else
+        {
             tail = newNode;
         }
         head = newNode;
     }
 
-    void hapusbuku(string judulBuku){
-        Node* hapus = head;
-        while(hapus != NULL){
-            if(hapus->judulBuku == judulBuku){
-                if(hapus == head){
+    void hapusbuku(string judulBuku)
+    {
+        Node *hapus = head;
+
+        while (hapus != NULL)
+        {
+            if (hapus->judulBuku == judulBuku)
+            {
+                if (hapus == head)
+                {
                     head = hapus->next;
-                if(head != NULL)
-                    head->prev = NULL;
-                } else if(hapus == tail){
+                    if (head != NULL)
+                        head->prev = NULL;
+                }
+                else if (hapus == tail)
+                {
                     tail = hapus->prev;
-                if(tail != NULL)
-                    tail->next = NULL;
-                } else {
+                    if (tail != NULL)
+                        tail->next = NULL;
+                }
+                else
+                {
                     hapus->prev->next = hapus->next;
                     hapus->next->prev = hapus->prev;
                 }
@@ -64,10 +79,15 @@ public:
         }
         cout << "Buku tidak ditemukan\n";
     }
-    bool update(string judullama,string ISBNlama,string penulislama,string judulbaru,string ISBNbaru,string penulisbaru) {
-       Node* current = head;
-        while (current != NULL) {
-            if (current->judulBuku == judullama && current->ISBN ==ISBNlama && current->namaPenulis==penulislama) {
+
+    bool update(string judullama, string ISBNlama, string penulislama, string judulbaru, string ISBNbaru, string penulisbaru)
+    {
+        Node *current = head;
+
+        while (current != NULL)
+        {
+            if (current->judulBuku == judullama && current->ISBN == ISBNlama && current->namaPenulis == penulislama)
+            {
                 current->judulBuku = judulbaru;
                 current->ISBN = ISBNbaru;
                 current->namaPenulis = penulisbaru;
@@ -76,11 +96,16 @@ public:
             current = current->next;
         }
         return false;
-        }
-    Node* cariBerdasarkanJudul(string JudulDicari) {
-        Node* temp = head;
-        while (temp != NULL) {
-            if (temp->judulBuku == JudulDicari) {
+    }
+
+    Node *cariBerdasarkanJudul(string JudulDicari)
+    {
+        Node *temp = head;
+
+        while (temp != NULL)
+        {
+            if (temp->judulBuku == JudulDicari)
+            {
                 return temp;
             }
             temp = temp->next;
@@ -88,11 +113,14 @@ public:
         return NULL;
     }
 
-    // Fungsi untuk mencari buku berdasarkan ISBN
-    Node* cariBerdasarkanISBN(string ISBNdicari) {
-        Node* temp = head;
-        while (temp != NULL) {
-            if (temp->ISBN == ISBNdicari) {
+    Node *cariBerdasarkanISBN(string ISBNdicari)
+    {
+        Node *temp = head;
+
+        while (temp != NULL)
+        {
+            if (temp->ISBN == ISBNdicari)
+            {
                 return temp;
             }
             temp = temp->next;
@@ -100,73 +128,92 @@ public:
         return NULL;
     }
 
-void cariBerdasarkanNamaPenulis(string namaPenulisdicari) {
-    Node* temp = head;
-    bool found = false;
-    while (temp != NULL) {
-        if (temp->namaPenulis == namaPenulisdicari) {
-            cout << "Judul Buku: " << temp->judulBuku << endl;
-            cout << "ISBN: " << temp->ISBN << endl;
-            cout << "Nama Penulis: " << temp->namaPenulis << endl << endl;
-            found = true;
+    void cariBerdasarkanNamaPenulis(string namaPenulisdicari)
+    {
+        Node *temp = head;
+        bool found = false;
+
+        while (temp != NULL)
+        {
+            if (temp->namaPenulis == namaPenulisdicari)
+            {
+                cout << "Judul Buku: " << temp->judulBuku << endl;
+                cout << "ISBN: " << temp->ISBN << endl;
+                cout << "Nama Penulis: " << temp->namaPenulis << endl;
+                cout << endl;
+                found = true;
+            }
+            temp = temp->next;
         }
-        temp = temp->next;
+
+        if (!found)
+        {
+            cout << "Tidak ada buku yang ditemukan dengan nama penulis tersebut." << endl;
+        }
     }
-    if (!found) {
-        cout << "Tidak ada buku yang ditemukan dengan nama penulis tersebut." << endl;
-    }
-}
-    
-    void display() {
-        Node* current = head;
-        while (current != NULL) {
-            cout <<endl<< current->judulBuku << " "<<endl;
-            cout << current->ISBN << " "<<endl;
-            cout << current->namaPenulis << " "<<endl;
+
+    void display()
+    {
+        Node *current = head;
+        while (current != NULL)
+        {
+            cout << endl
+                 << current->judulBuku << " " << endl;
+            cout << current->ISBN << " " << endl;
+            cout << current->namaPenulis << " " << endl;
 
             current = current->next;
-            }
-        cout << endl;
         }
+        cout << endl;
+    }
 };
 
-struct pinjam {
+struct pinjam
+{
     string nama;
     string nim;
     string judul;
     string durasi;
-    pinjam* next;
+    pinjam *next;
 };
 
-pinjam* font, * back, * newNode, * cur, * del;
+pinjam *font, *back, *newNode, *cur, *del;
 
-int countAntrian() {
+int countAntrian()
+{
     int count = 0;
     cur = font;
-    while (cur != NULL) {
+    while (cur != NULL)
+    {
         count++;
         cur = cur->next;
     }
     return count;
 }
 
-bool isEmpty() {
+bool isEmpty()
+{
     return font == NULL;
 }
-void enqueue(string nama,string nim,string judul,string durasi) {
-    if (isEmpty()) {
+
+void enqueue(string nama, string nim, string judul, string durasi)
+{
+    if (isEmpty())
+    {
         font = new pinjam();
         font->nama = nama;
         font->nim = nim;
-        font->judul= judul;
+        font->judul = judul;
         font->durasi = durasi;
         font->next = NULL;
         back = font;
-    } else {
+    }
+    else
+    {
         newNode = new pinjam();
         newNode->nama = nama;
         newNode->nim = nim;
-        newNode->judul= judul;
+        newNode->judul = judul;
         newNode->durasi = durasi;
         newNode->next = NULL;
         back->next = newNode;
@@ -174,87 +221,102 @@ void enqueue(string nama,string nim,string judul,string durasi) {
     }
 }
 
-void dequeue(int posisi) {
-    if (isEmpty()) {
+void dequeue(int posisi)
+{
+    if (isEmpty())
+    {
         cout << "Antrian kosong" << endl;
     }
-    else if (posisi < 1 || posisi > countAntrian()){
+    else if (posisi < 1 || posisi > countAntrian())
+    {
         cout << "Posisi Tidak Ada" << endl;
     }
-    else {
-        if(posisi==1){
-        cur = font;
-        font = font->next;
-        delete cur;
+    else
+    {
+        if (posisi == 1)
+        {
+            cur = font;
+            font = font->next;
+            delete cur;
         }
-        else{
-            pinjam* prev = NULL;
-            pinjam* cur = font;
+        else
+        {
+            pinjam *prev = NULL;
+            pinjam *cur = font;
             int count = 1;
 
-            while (count < posisi) {
+            while (count < posisi)
+            {
                 prev = cur;
                 cur = cur->next;
                 count++;
             }
-
             prev->next = cur->next;
-            if (cur == back) {
+
+            if (cur == back)
+            {
                 back = prev;
             }
             delete cur;
         }
     }
-    
-    
 }
 
-void display(int max) {
-        for (int i = 1 ; i <= max; i++) {
-            if (i <= countAntrian()) {
-                 cur = font;
-                for (int j = 1; j < i; j++) {
+void display(int max)
+{
+    for (int i = 1; i <= max; i++)
+    {
+        if (i <= countAntrian())
+        {
+            cur = font;
+            for (int j = 1; j < i; j++)
+            {
                 cur = cur->next;
-                }
-                cout << i << ". " << setw(5) <<"NAMA  :"<<cur->nama << endl;
-                cout <<" " << setw(9) <<"NIM   :"<< cur->nim  << endl;
-                cout <<" " << setw(9) <<"JUDUL :"<< cur->judul << endl;
-                cout <<" " << setw(9) <<"DURASI:"<< cur->durasi << endl;
-                cout <<"========================="<<endl;
-            } else {
-                 cout << i << ". (kosong)" << endl;
+            }
+            cout << i << ". " << setw(5) << "NAMA  :" << cur->nama << endl;
+            cout << " " << setw(9) << "NIM   :" << cur->nim << endl;
+            cout << " " << setw(9) << "JUDUL :" << cur->judul << endl;
+            cout << " " << setw(9) << "DURASI:" << cur->durasi << endl;
+            cout << "=========================" << endl;
+        }
+        else
+        {
+            cout << i << ". (kosong)" << endl;
         }
     }
 }
 
-int main(){
+int main()
+{
     Perpustakaan list;
-    string nama_peminjam,judul_pinjam,judulBuku, namaPenulis,judullama,penulislama,ISBN,ISBNlama;
-    string namaPenulisdicari, JudulDicari,ISBNdicari,Durasi,Nim;
-    Node* hasil;
+    string nama_peminjam, judul_pinjam, judulBuku, namaPenulis, judullama, penulislama, ISBN, ISBNlama;
+    string namaPenulisdicari, JudulDicari, ISBNdicari, Durasi, Nim;
+    Node *hasil;
     int Max, pilih, jumlahBuku;
-
-    cout << "Selamat Datang Di Perpustakaan\n";
 
     while (true)
     {
-        cout << "Silahkan Pilih Menu\n\n";
+        cout << "Text pembukaan\n";
         cout << "1. Tambah Buku\n";
         cout << "2. Lihat semua Buku\n";
         cout << "3. Ubah Buku\n";
-        cout << "4. Hapus Buku\n"; 
+        cout << "4. Hapus Buku\n";
         cout << "5. Pinjam Buku\n";
         cout << "6. Cari Buku\n";
-        cout << "7. Keluar\n";
-        cout << "Pilih Menu: "; cin >> pilih;
+        cout << "7. Keluar;";
+        cout << "Text Pilih Menu: ";
+        cin >> pilih;
         system("clear");
+
         switch (pilih)
         {
         case 1:
-            cout << "\nJumlah buku yang ingin di input: "; cin >> jumlahBuku;
+            cout << "\nJumlah buku yang ingin di input: ";
+            cin >> jumlahBuku;
             cin.ignore();
-            for (int i = 0; i < jumlahBuku; i++) {
-                cout << "\nBuku " << i+1 << endl;
+            for (int i = 0; i < jumlahBuku; i++)
+            {
+                cout << "\nBuku " << i + 1 << endl;
                 cout << "Judul Buku: ";
                 getline(cin, judulBuku);
                 cout << "ISBN: ";
@@ -267,16 +329,21 @@ int main(){
             cin.ignore();
             system("clear");
             break;
+
         case 2:
             list.display();
             break;
-        case 3: 
+
+        case 3:
             int b;
-            cout << "Masukan banyak data yang diubah: "; cin >> b;
-            for ( int i = 0 ; i < b ; i++){
-            cout << "Buku Ke - "<< i+1 <<endl;
-            cout << "Data Buku Lama"<<endl;
-            cout << "Judul Buku: ";
+            cout << "Masukan banyak data yang diubah: ";
+            cin >> b;
+
+            for (int i = 0; i < b; i++)
+            {
+                cout << "Buku Ke - " << i + 1 << endl;
+                cout << "Data Buku Lama" << endl;
+                cout << "Judul Buku: ";
                 cin.ignore();
                 getline(cin, judullama);
                 cout << "ISBN: ";
@@ -284,9 +351,9 @@ int main(){
                 cout << "Nama Penulis: ";
                 cin.ignore();
                 getline(cin, penulislama);
-            cout << endl;
-            cout << "Data Buku Lama";
-            cout << "Judul Buku: ";
+                cout << endl;
+                cout << "Data Buku Lama";
+                cout << "Judul Buku: ";
                 cin.ignore();
                 getline(cin, judulBuku);
                 cout << "ISBN: ";
@@ -294,137 +361,152 @@ int main(){
                 cout << "Nama Penulis: ";
                 cin.ignore();
                 getline(cin, namaPenulis);
-            bool updated = list.update(judullama,ISBNlama,penulislama,judulBuku,ISBN,namaPenulis);
-            
-            if (! updated ) {
-                cout << "Data not found" << endl;
-                }}
+                bool updated = list.update(judullama, ISBNlama, penulislama, judulBuku, ISBN, namaPenulis);
+
+                if (!updated)
+                {
+                    cout << "Data not found" << endl;
+                }
+            }
             system("clear");
-        break;
-        
-    
+            break;
+
         case 4:
             cout << "\nMasukkan buku yang ingin dihapus: ";
             cin.ignore();
             getline(cin, judulBuku);
             list.hapusbuku(judulBuku);
             break;
-        case 5 :
-            
+
+        case 5:
             int a;
             int n;
-            cout << "Masukan Jumlah Maksimal Peminjam : "; cin >> Max;
-            do{
-            cout << "menu pinjam"<<endl;
-            cout << "1. Pinjam"<<endl;
-            cout << "2. Buku yang di pinjam"<<endl;
-            cout << "3. Hapus peminjam"<<endl;
-            cout << "Masukan Pilihan : ";cin >> a;
-            system("clear");
-            switch (a)
+            cout << "Masukan Jumlah Maksimal Peminjam : ";
+            cin >> Max;
+            do
             {
-            case 1:
-                
-                cout << "Masukan banyak peminjam : "; cin >> n;
-                cin.ignore();
-                for (int i = 1 ; i <= n ; i++){
-                cout << "data peminjam ke - "<< i  <<endl;
-                cout << "nama peminjam : ";
-                getline(cin, nama_peminjam);
-                cout << "Nim           : ";
-                getline(cin, Nim);
-                cout << "judul buku    : ";
-                getline(cin, judul_pinjam );
-                cout << "Durasi Pinjam : ";
-                getline(cin, Durasi);
-                enqueue(nama_peminjam,Nim,judul_pinjam,Durasi);
-                cout << endl;
-                }
-                cin.ignore();
+                cout << "menu pinjam" << endl;
+                cout << "1. Pinjam" << endl;
+                cout << "2. Buku yang di pinjam" << endl;
+                cout << "3. Hapus peminjam" << endl;
+                cout << "Masukan Pilihan : ";
+                cin >> a;
                 system("clear");
-                break;
-            case 2 : 
-                cout << endl;
-                cout << "Daftar Buku Yang Dipinjam" << endl;
-                cout << "=========================" << endl;
-                display(Max);
-                cin.ignore();
-                
-                break;
-            case 3 : 
-                cout << "Masukan "<<endl;
-            default:
-                break;
-            }}while(a !=3 );
-        break;
 
-        case 6:{
+                switch (a)
+                {
+                case 1:
+
+                    cout << "Masukan banyak peminjam : ";
+                    cin >> n;
+                    cin.ignore();
+                    for (int i = 1; i <= n; i++)
+                    {
+                        cout << "data peminjam ke - " << i << endl;
+                        cout << "nama peminjam : ";
+                        getline(cin, nama_peminjam);
+                        cout << "Nim           : ";
+                        getline(cin, Nim);
+                        cout << "judul buku    : ";
+                        getline(cin, judul_pinjam);
+                        cout << "Durasi Pinjam : ";
+                        getline(cin, Durasi);
+                        enqueue(nama_peminjam, Nim, judul_pinjam, Durasi);
+                        cout << endl;
+                    }
+                    cin.ignore();
+                    system("clear");
+                    break;
+
+                case 2:
+                    cout << endl;
+                    cout << "Daftar Buku Yang Dipinjam" << endl;
+                    cout << "=========================" << endl;
+                    display(Max);
+                    cin.ignore();
+                    break;
+
+                case 3:
+                    cout << "Masukan " << endl;
+                    break;
+
+                default:
+                    break;
+                }
+            }
+
+            while (a != 3);
+            break;
+
+        case 6:
+        {
             cout << "Cari berdasarkan\n";
             cout << "1. nama Buku\n";
-            cout << "2. ISBN Buku\n"; 
+            cout << "2. ISBN Buku\n";
             cout << "3. Penulis Buku\n";
+            cin >> pilih;
 
-            cin  >> pilih;
-
-            if(pilih==1){
-                cout<<"masukkan nama buku: ";
+            if (pilih == 1)
+            {
+                cout << "masukkan nama buku: ";
                 cin.ignore();
                 getline(cin, JudulDicari);
-                Node* hasil;
+                Node *hasil;
                 hasil = list.cariBerdasarkanJudul(JudulDicari);
-                if (hasil != NULL) {
-                    cout << "Buku dengan judul: "<<JudulDicari<<" ditemukan!"<<endl;
-                    cout <<"Data buku"<<endl;
-                    cout << "nama buku: "<< hasil->judulBuku << endl;
-                    cout << "penulis: "<<hasil->namaPenulis<< endl;
-                    cout << "isbn: "<<hasil->ISBN<< endl;
-                    } 
-                
-                else {
+                if (hasil != NULL)
+                {
+                    cout << "Buku dengan judul: " << JudulDicari << " ditemukan!" << endl;
+                    cout << "Data buku" << endl;
+                    cout << "nama buku: " << hasil->judulBuku << endl;
+                    cout << "penulis: " << hasil->namaPenulis << endl;
+                    cout << "isbn: " << hasil->ISBN << endl;
+                }
+                else
+                {
                     cout << "Buku tidak ditemukan." << endl;
                 }
             }
 
-            else if (pilih==2){
+            else if (pilih == 2)
+            {
                 cout << "\nMasukkan ISBN buku yang ingin dicari: ";
                 cin >> ISBNdicari;
                 hasil = list.cariBerdasarkanISBN(ISBNdicari);
-                if (hasil != NULL) {
+                if (hasil != NULL)
+                {
                     cout << "Buku dengan ISBN " << ISBNdicari << " ditemukan: " << endl;
-                    cout << "Data buku"<<endl;
-                    cout << "nama buku: "<< hasil->judulBuku << endl;
-                    cout << "penulis: "<<hasil->namaPenulis<< endl;
-                    cout << "ISBN: "<<hasil->ISBN<< endl;
-                    }
-                     
-                else {
+                    cout << "Data buku" << endl;
+                    cout << "nama buku: " << hasil->judulBuku << endl;
+                    cout << "penulis: " << hasil->namaPenulis << endl;
+                    cout << "ISBN: " << hasil->ISBN << endl;
+                }
+                else
+                {
                     cout << "Buku dengan ISBN " << ISBNdicari << " tidak ditemukan." << endl;
                 }
             }
 
-            else if (pilih==3){
+            else if (pilih == 3)
+            {
                 cout << "\nMasukkan nama penulis yang ingin dicari: ";
                 cin.ignore();
                 getline(cin, namaPenulisdicari);
                 list.cariBerdasarkanNamaPenulis(namaPenulisdicari);
-
-            } 
-            
-
-            else{
-                cout<< "Input Tidak Valid!";
             }
-            break;}
+            else
+            {
+                cout << "input tidak valid";
+            }
+            break;
+        }
 
         case 7:
-            cout << "Terima Kasih Telah Mengunjungi Perpustakaan\n";
-            exit (0);
+            cout << "\nTerima Kasih Telah Mengunjungi Perpustakaan\n";
+            exit(0);
 
         default:
             cout << "Input Tidak Valid!\n\n";
             break;
-        
-
         }
     }
     return 0;
