@@ -294,17 +294,21 @@ int main()
     Node *hasil;
     int Max, pilih, jumlahBuku;
 
+    cout << "\nSELAMAT DATANG DI PERPUSTAKAAN\n";
+
     while (true)
     {
-        cout << "Text pembukaan\n";
+        cout << "SILAHKAN PILIH MENU YANG TERSEDIA\n\n";
+        cout << "=========================\n";
         cout << "1. Tambah Buku\n";
         cout << "2. Lihat semua Buku\n";
         cout << "3. Ubah Buku\n";
         cout << "4. Hapus Buku\n";
         cout << "5. Pinjam Buku\n";
         cout << "6. Cari Buku\n";
-        cout << "7. Keluar;";
-        cout << "Text Pilih Menu: ";
+        cout << "7. Keluar\n";
+        cout << "=========================\n\n";
+        cout << "PILIH MENU: ";
         cin >> pilih;
         system("clear");
 
@@ -317,9 +321,9 @@ int main()
             for (int i = 0; i < jumlahBuku; i++)
             {
                 cout << "\nBuku " << i + 1 << endl;
-                cout << "Judul Buku: ";
+                cout << "Judul Buku  : ";
                 getline(cin, judulBuku);
-                cout << "ISBN: ";
+                cout << "ISBN        : ";
                 getline(cin, ISBN);
                 cout << "Nama Penulis: ";
                 getline(cin, namaPenulis);
@@ -501,7 +505,7 @@ int main()
         }
 
         case 7:
-            cout << "\nTerima Kasih Telah Mengunjungi Perpustakaan\n";
+            cout << "\nTERIMA KASIH TELAH MENGUNJUNGI PERPUSTAKAAN!\n";
             exit(0);
 
         default:
