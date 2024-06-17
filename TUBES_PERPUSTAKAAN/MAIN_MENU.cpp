@@ -18,13 +18,17 @@ int main()
     char username[100];
     char password[100];
         hash_table.insert("Ervan", "2311102206");
+        hash_table.insert("Adit", "2311102207");
+        hash_table.insert("Raifanka", "2311102205");
+        hash_table.insert("Abi", "2311102208");
+        login :
         cout << "====================================="<<endl;       
         cout << "|           Silahkan Login          |" <<endl;
         cout << "====================================="<<endl;
         cout << "| Masukan username : ";
         cin  >> username;
         cout << "====================================="<<endl;
-        cout << "Masukan password : ";
+        cout << "| Masukan password : ";
         cin  >> password;
         cout << "====================================="<<endl;
         const char *result = hash_table.search(username);
@@ -32,6 +36,7 @@ int main()
             cout << "===================="<<endl;
             cout << "|   login sukses  |"<<endl;
             cout << "===================="<<endl;
+            cin.ignore();
             cin.ignore();
             system("cls");
 
@@ -288,6 +293,12 @@ int main()
                     break;
                 }
             }
+        }else{
+            cout<<"login gagal"<<endl;
+            cin.ignore();
+            cin.ignore();
+            system("cls");
+            goto login;
         }
     
     return 0;
