@@ -183,7 +183,7 @@ int main()
                         case 2:
                             cout << endl;
                             cout << "====================================="<<endl;
-                            cout << "|     Daftar Buku Yang Dipinjam     |" << endl;
+                            cout << "|     Daftar Anterian Peminjam      |" << endl;
                             cout << "====================================="<<endl;
                             display(Max);
                             cin.ignore();
