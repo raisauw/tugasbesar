@@ -191,6 +191,11 @@ int main()
 
                         case 3:
                             dequeue();
+                            cout << "====================================="<<endl;
+                            cout << "|      Anterian Sudah Dilayani      |"<<endl;
+                            cout << "====================================="<<endl;
+                            cin.ignore();
+                            cin.ignore();
                             break;
                         default:
                             break;
